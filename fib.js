@@ -21,9 +21,7 @@ let updateTopBox = function() {
   replace.textContent = "Fib(" + slider.value + ")";
   let replace_nums = document.createElement("p");
   replace_nums.id = "nums";
-  let delete_me = fib_string(slider.value);
-  // console.log(delete_me);
-  replace_nums.textContent = delete_me;
+  replace_nums.textContent = fib_string(slider.value);
   if (document.getElementById("text") != undefined) {
     div.removeChild(document.getElementById("text"));
   }
@@ -58,7 +56,6 @@ let updateBottomBox = function() {
   fibonacci(slider2.value);
   let tree = fib_tree(slider2.value);
   replace_nums.appendChild(tree);
-  console.log(tree);
   if (document.getElementById("text2") != undefined) {
     div2.removeChild(document.getElementById("text2"));
   }
@@ -102,7 +99,5 @@ function fib_string(num) {
     number = parseInt(num);
   }
   fibonacci(number);
-  console.log(number);
-  console.log(number, cache.slice(0, num + 1).join(",\xa0\xa0\xa0\xa0  "));
   return cache.slice(0, number + 1).join(",\xa0\xa0\xa0\xa0  ");
 }
