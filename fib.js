@@ -42,7 +42,7 @@ document.querySelector("body").appendChild(div2);
 let slider2 = document.createElement("INPUT");
 slider2.setAttribute("type", "range");
 slider2.setAttribute("max", "11");
-slider2.setAttribute("value", "4");
+slider2.setAttribute("value", "5");
 
 div2.appendChild(slider2);
 
@@ -51,7 +51,6 @@ let updateBottomBox = function() {
   replace.id = "text2";
   replace.textContent = "Fib(" + slider2.value + ")";
   let replace_nums = document.createElement("div");
-  // replace_nums.setAttribute("class", "flex");
   replace_nums.id = "nums2";
   fibonacci(slider2.value);
   let tree = fib_tree(slider2.value);
