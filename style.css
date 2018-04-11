@@ -10,13 +10,13 @@ body {
 .fib-left {
   float: left;
   display: inline-block;
-  margin-right: 4px;
+  margin-top: 1.5em;
 }
 
 .fib-right {
   float: right;
   display: inline-block;
-  margin-left: 4px;
+  margin-top: 1.5em;
 }
 
 .shadowed {

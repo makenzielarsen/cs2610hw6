@@ -21,7 +21,9 @@ let updateTopBox = function() {
   replace.textContent = "Fib(" + slider.value + ")";
   let replace_nums = document.createElement("p");
   replace_nums.id = "nums";
-  replace_nums.textContent = fib_string(slider.value);
+  let delete_me = fib_string(slider.value);
+  // console.log(delete_me);
+  replace_nums.textContent = delete_me;
   if (document.getElementById("text") != undefined) {
     div.removeChild(document.getElementById("text"));
   }
@@ -51,36 +53,18 @@ let updateBottomBox = function() {
   replace.id = "text2";
   replace.textContent = "Fib(" + slider2.value + ")";
   let replace_nums = document.createElement("div");
-  replace_nums.setAttribute("class", "fib");
+  // replace_nums.setAttribute("class", "flex");
   replace_nums.id = "nums2";
-  // let complete_tree = fibonacci2(slider2.value);
-  // console.log(complete_tree);
+  fibonacci(slider2.value);
+  let tree = fib_tree(slider2.value);
+  replace_nums.appendChild(tree);
+  console.log(tree);
   if (document.getElementById("text2") != undefined) {
     div2.removeChild(document.getElementById("text2"));
   }
   if (document.getElementById("nums2")) {
     div2.removeChild(document.getElementById("nums2"));
   }
-
-  // for (i = 0; i < slider2.value * 2 + 1; i++) {
-  //   if (i === 0) {
-  //     replace_nums.textContent = complete_tree[0];
-  //   }
-  //   j = i;
-  //   while (complete_tree[2 * j] != undefined) {
-  //     let temp = document.createElement("div");
-  //     temp.setAttribute("class", "fib-left");
-  //     temp.textContent = complete_tree[2 * j];
-  //     j *= 2;
-  //   }
-  //   j = i;
-  //   while (complete_tree[2 * i + 1] != undefined) {
-  //     let temp = document.createElement("div");
-  //     temp.setAttribute("class", "fib-right");
-  //     temp.textContent = complete_tree[j * 2 + 1];
-  //     j = j * 2 + 1;
-  //   }
-  // }
 
   div2.insertBefore(replace, slider2);
   div2.appendChild(replace_nums);
@@ -98,7 +82,27 @@ function fibonacci(num) {
   }
 }
 
+function fib_tree(num) {
+  let tree = document.createElement("div");
+  tree.setAttribute("class", "fib");
+  tree.textContent = "F(" + num + ") = " + cache[num];
+  if (num > 1) {
+    let left = fib_tree(num - 1);
+    left.setAttribute("class", "fib fib-left");
+    tree.appendChild(left);
+    let right = fib_tree(num - 2);
+    right.setAttribute("class", "fib fib-right");
+    tree.appendChild(right);
+  }
+  return tree;
+}
+
 function fib_string(num) {
-  fibonacci(num);
-  return cache.slice(0, num + 1).join(",\xa0\xa0\xa0\xa0  ");
+  if (typeof num != "number") {
+    number = parseInt(num);
+  }
+  fibonacci(number);
+  console.log(number);
+  console.log(number, cache.slice(0, num + 1).join(",\xa0\xa0\xa0\xa0  "));
+  return cache.slice(0, number + 1).join(",\xa0\xa0\xa0\xa0  ");
 }
